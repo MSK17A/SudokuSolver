@@ -4,7 +4,7 @@ import "fmt"
 
 type Board [9][9]int
 
-func constructBoard(board *Board) {
+/*func constructBoard(board *Board) {
 	*board = Board{
 		{0, 9, 6, 0, 4, 0, 0, 0, 1},
 		{1, 0, 0, 0, 6, 0, 0, 0, 4},
@@ -16,16 +16,7 @@ func constructBoard(board *Board) {
 		{0, 5, 9, 0, 7, 0, 8, 3, 0},
 		{0, 0, 3, 5, 9, 0, 0, 0, 7},
 	}
-	/*board[0] = [9]int{0, 9, 6, 0, 4, 0, 0, 0, 1}
-	board[1] = [9]int{1, 0, 0, 0, 6, 0, 0, 0, 4}
-	board[2] = [9]int{5, 0, 4, 8, 1, 0, 3, 9, 0}
-	board[3] = [9]int{0, 0, 7, 9, 5, 0, 0, 4, 3}
-	board[4] = [9]int{0, 3, 0, 0, 8, 0, 0, 0, 0}
-	board[5] = [9]int{4, 0, 5, 0, 2, 3, 0, 1, 8}
-	board[6] = [9]int{0, 1, 0, 6, 3, 0, 0, 5, 9}
-	board[7] = [9]int{0, 5, 9, 0, 7, 0, 8, 3, 0}
-	board[8] = [9]int{0, 0, 3, 5, 9, 0, 0, 0, 7}*/
-}
+}*/
 
 func isValid(board *Board, num, pos_row, pos_col int) bool {
 	for index_col := 0; index_col < 9; index_col++ {
