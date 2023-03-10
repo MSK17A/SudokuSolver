@@ -105,6 +105,7 @@ func SudokuSolver(board *Board) bool {
 			if SudokuSolver(board) {
 				return true
 			}
+
 			// Or backtrack (reset the current value and try another number)
 			board[pos_row][pos_col] = 0
 		}
