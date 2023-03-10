@@ -47,7 +47,7 @@ func isValid(board *Board, num, pos_row, pos_col int) bool {
 	// Example, box_row = 1, the index_row should be 3, so index_row = box_row * 3
 	for index_col := box_col * 3; index_col < box_col*3+3; index_col++ {
 		for index_row := box_row * 3; index_row < box_row*3+3; index_row++ {
-			if board[index_row][index_col] == num {
+			if board[index_row][index_col] == num && index_row != pos_row && index_col != pos_col {
 				return false
 			}
 		}
@@ -85,9 +85,29 @@ func empty_place(board *Board) (int, int) {
 	}
 	return -1, -1
 }
-func SudokuSolver() {
-	var board Board
-	constructBoard(&board)
-	print_board(&board)
-	fmt.Print(isValid(&board, 2, 4, 5))
+func SudokuSolver(board *Board) bool {
+	pos_row, pos_col := empty_place(board)
+	if pos_row == -1 {
+		/* if no empty places are found then we reached a solution*/
+		// Print the board and khalaas
+		print_board(board)
+		return true
+	}
+
+	// If there are empty place try number from 1 to 9
+	for input_num := 1; input_num < 10; input_num++ {
+		// If the number is valid insert it in the empty position
+		if isValid(board, input_num, pos_row, pos_col) {
+			board[pos_row][pos_col] = input_num
+			// One we put the number we can call the function again to choose the next number
+			// And if the function returns true, that means there are no empty places and we have solution, so just return true
+			// Note: SudokoSolver will return true only if there is a solutiuon
+			if SudokuSolver(board) {
+				return true
+			}
+			// Or backtrack (reset the current value and try another number)
+			board[pos_row][pos_col] = 0
+		}
+	}
+	return false
 }
